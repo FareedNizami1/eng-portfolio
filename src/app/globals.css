@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dark theme: default (no class / html.dark) */
+html,
+html.dark {
+  --bg-page: #060607;
+  --bg-elevated: #0c0c0e;
+  --text-primary: #f4f4f5;
+  --text-secondary: #c4c4cc;
+  --text-muted: #8b8b96;
+  --accent: #22d3ee;
+  --accent-dim: #0891b2;
+  --accent-foreground: #020617;
+  --accent-glow: rgba(34, 211, 238, 0.35);
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-nav: rgba(12, 12, 14, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.06);
+  --glass-shadow: rgba(0, 0, 0, 0.5);
+  --glass-hover: rgba(255, 255, 255, 0.06);
+  --glow-1: rgba(34, 211, 238, 0.12);
+  --glow-2: rgba(168, 85, 247, 0.1);
+  --grid-line: rgba(255, 255, 255, 0.04);
+}
+
+html.light {
+  --bg-page: #ececf0;
+  --bg-elevated: #ffffff;
+  --text-primary: #0a0a0b;
+  --text-secondary: #3f3f46;
+  --text-muted: #71717a;
+  --accent: #0e7490;
+  --accent-dim: #155e75;
+  --accent-foreground: #f0fdfa;
+  --accent-glow: rgba(14, 116, 144, 0.25);
+  --glass-bg: rgba(255, 255, 255, 0.55);
+  --glass-nav: rgba(255, 255, 255, 0.72);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+  --glass-shadow: rgba(0, 0, 0, 0.08);
+  --glass-hover: rgba(0, 0, 0, 0.04);
+  --glow-1: rgba(14, 116, 144, 0.08);
+  --glow-2: rgba(99, 102, 241, 0.06);
+  --grid-line: rgba(0, 0, 0, 0.06);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-mono: var(--font-jetbrains);
+  --font-display: var(--font-syne);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 20%, transparent 70%);
+  opacity: 0.85;
 }

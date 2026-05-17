@@ -1,0 +1,230 @@
+diff --git a/node_modules/@react-three/fiber/dist/events-238e0986.cjs.prod.js b/node_modules/@react-three/fiber/dist/events-238e0986.cjs.prod.js
+index f36e01a..d136d0b 100644
+--- a/node_modules/@react-three/fiber/dist/events-238e0986.cjs.prod.js
++++ b/node_modules/@react-three/fiber/dist/events-238e0986.cjs.prod.js
+@@ -994,7 +994,51 @@ const createStore = (invalidate, advance) => {
+       linear: false,
+       flat: false,
+       controls: null,
+-      clock: new THREE__namespace.Clock(),
++      clock: (function () {
++        const THREE$ns = THREE__namespace;
++        const t = new THREE$ns.Timer();
++        if (typeof document !== 'undefined') t.connect(document);
++        const wrap = {
++          _timer: t,
++          _manualElapsed: false,
++          _elapsedValue: 0,
++          running: true,
++          autoStart: true,
++          startTime: 0,
++          oldTime: 0,
++          start: function () {
++            this.running = true;
++            this._timer.dispose();
++            const nt = new THREE$ns.Timer();
++            if (typeof document !== 'undefined') nt.connect(document);
++            this._timer = nt;
++            this._manualElapsed = false;
++            this.oldTime = 0;
++          },
++          stop: function () {
++            this.running = false;
++          },
++          getElapsedTime: function () {
++            return this._timer.getElapsed();
++          },
++          getDelta: function () {
++            return this._timer.getDelta();
++          },
++        };
++        Object.defineProperty(wrap, 'elapsedTime', {
++          configurable: true,
++          enumerable: true,
++          get: function () {
++            if (wrap._manualElapsed) return wrap._elapsedValue;
++            return wrap._timer.getElapsed();
++          },
++          set: function (v) {
++            wrap._manualElapsed = true;
++            wrap._elapsedValue = v;
++          },
++        });
++        return wrap;
++      })(),
+       pointer,
+       mouse: pointer,
+       frameloop: 'always',
+@@ -7823,14 +7867,15 @@ function flushGlobalEffects(type, timestamp) {
+ let subscribers;
+ let subscription;
+ function update(timestamp, state, frame) {
+-  // Run local effects
+-  let delta = state.clock.getDelta();
+-
+-  // In frameloop='never' mode, clock times are updated using the provided timestamp
++  // Run local effects — THREE.Timer requires update() before getDelta() (replaces deprecated Clock)
++  let delta;
+   if (state.frameloop === 'never' && typeof timestamp === 'number') {
+     delta = timestamp - state.clock.elapsedTime;
+     state.clock.oldTime = state.clock.elapsedTime;
+     state.clock.elapsedTime = timestamp;
++  } else {
++    if (state.clock._timer) state.clock._timer.update(timestamp);
++    delta = state.clock.getDelta();
+   }
+ 
+   // Call subscribers (useFrame)
+diff --git a/node_modules/@react-three/fiber/dist/events-358c3764.cjs.dev.js b/node_modules/@react-three/fiber/dist/events-358c3764.cjs.dev.js
+index fac8710..6c4aeb4 100644
+--- a/node_modules/@react-three/fiber/dist/events-358c3764.cjs.dev.js
++++ b/node_modules/@react-three/fiber/dist/events-358c3764.cjs.dev.js
+@@ -994,7 +994,51 @@ const createStore = (invalidate, advance) => {
+       linear: false,
+       flat: false,
+       controls: null,
+-      clock: new THREE__namespace.Clock(),
++      clock: (function () {
++        const THREE$ns = THREE__namespace;
++        const t = new THREE$ns.Timer();
++        if (typeof document !== 'undefined') t.connect(document);
++        const wrap = {
++          _timer: t,
++          _manualElapsed: false,
++          _elapsedValue: 0,
++          running: true,
++          autoStart: true,
++          startTime: 0,
++          oldTime: 0,
++          start: function () {
++            this.running = true;
++            this._timer.dispose();
++            const nt = new THREE$ns.Timer();
++            if (typeof document !== 'undefined') nt.connect(document);
++            this._timer = nt;
++            this._manualElapsed = false;
++            this.oldTime = 0;
++          },
++          stop: function () {
++            this.running = false;
++          },
++          getElapsedTime: function () {
++            return this._timer.getElapsed();
++          },
++          getDelta: function () {
++            return this._timer.getDelta();
++          },
++        };
++        Object.defineProperty(wrap, 'elapsedTime', {
++          configurable: true,
++          enumerable: true,
++          get: function () {
++            if (wrap._manualElapsed) return wrap._elapsedValue;
++            return wrap._timer.getElapsed();
++          },
++          set: function (v) {
++            wrap._manualElapsed = true;
++            wrap._elapsedValue = v;
++          },
++        });
++        return wrap;
++      })(),
+       pointer,
+       mouse: pointer,
+       frameloop: 'always',
+@@ -16020,14 +16064,15 @@ function flushGlobalEffects(type, timestamp) {
+ let subscribers;
+ let subscription;
+ function update(timestamp, state, frame) {
+-  // Run local effects
+-  let delta = state.clock.getDelta();
+-
+-  // In frameloop='never' mode, clock times are updated using the provided timestamp
++  // Run local effects — THREE.Timer requires update() before getDelta() (replaces deprecated Clock)
++  let delta;
+   if (state.frameloop === 'never' && typeof timestamp === 'number') {
+     delta = timestamp - state.clock.elapsedTime;
+     state.clock.oldTime = state.clock.elapsedTime;
+     state.clock.elapsedTime = timestamp;
++  } else {
++    if (state.clock._timer) state.clock._timer.update(timestamp);
++    delta = state.clock.getDelta();
+   }
+ 
+   // Call subscribers (useFrame)
+diff --git a/node_modules/@react-three/fiber/dist/events-5a94e5eb.esm.js b/node_modules/@react-three/fiber/dist/events-5a94e5eb.esm.js
+index 18789b5..f0cc312 100644
+--- a/node_modules/@react-three/fiber/dist/events-5a94e5eb.esm.js
++++ b/node_modules/@react-three/fiber/dist/events-5a94e5eb.esm.js
+@@ -969,7 +969,50 @@ const createStore = (invalidate, advance) => {
+       linear: false,
+       flat: false,
+       controls: null,
+-      clock: new THREE.Clock(),
++      clock: (function () {
++        const t = new THREE.Timer();
++        if (typeof document !== 'undefined') t.connect(document);
++        const wrap = {
++          _timer: t,
++          _manualElapsed: false,
++          _elapsedValue: 0,
++          running: true,
++          autoStart: true,
++          startTime: 0,
++          oldTime: 0,
++          start: function () {
++            this.running = true;
++            this._timer.dispose();
++            const nt = new THREE.Timer();
++            if (typeof document !== 'undefined') nt.connect(document);
++            this._timer = nt;
++            this._manualElapsed = false;
++            this.oldTime = 0;
++          },
++          stop: function () {
++            this.running = false;
++          },
++          getElapsedTime: function () {
++            return this._timer.getElapsed();
++          },
++          getDelta: function () {
++            return this._timer.getDelta();
++          },
++        };
++        Object.defineProperty(wrap, 'elapsedTime', {
++          configurable: true,
++          enumerable: true,
++          get: function () {
++            if (wrap._manualElapsed) return wrap._elapsedValue;
++            return wrap._timer.getElapsed();
++          },
++          set: function (v) {
++            wrap._manualElapsed = true;
++            wrap._elapsedValue = v;
++          },
++        });
++        return wrap;
++      })(),
+       pointer,
+       mouse: pointer,
+       frameloop: 'always',
+@@ -15995,14 +16038,15 @@ function flushGlobalEffects(type, timestamp) {
+ let subscribers;
+ let subscription;
+ function update(timestamp, state, frame) {
+-  // Run local effects
+-  let delta = state.clock.getDelta();
+-
+-  // In frameloop='never' mode, clock times are updated using the provided timestamp
++  // Run local effects — THREE.Timer requires update() before getDelta() (replaces deprecated Clock)
++  let delta;
+   if (state.frameloop === 'never' && typeof timestamp === 'number') {
+     delta = timestamp - state.clock.elapsedTime;
+     state.clock.oldTime = state.clock.elapsedTime;
+     state.clock.elapsedTime = timestamp;
++  } else {
++    if (state.clock._timer) state.clock._timer.update(timestamp);
++    delta = state.clock.getDelta();
+   }
+ 
+   // Call subscribers (useFrame)
