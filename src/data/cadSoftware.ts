@@ -37,7 +37,7 @@ export const cadSoftware: CadSoftwareGroup[] = [
           "Material: Steel & Aluminum",
           "Software Version: SolidWorks 2024",
         ],
-        imageUrl: "/cadProjects/solidworks/cylinderEngine/Assembly.png",
+        imageUrl: "/cadProjects/solidworks/cylinderEngine/Assembly.PNG",
       },
       {
         localId: 2,
@@ -51,7 +51,7 @@ export const cadSoftware: CadSoftwareGroup[] = [
           "Draft Angle: 3°",
           "Surface Finish: Textured",
         ],
-        imageUrl: "/cadProjects/solidworks/heatExchanger/Assembly.png",
+        imageUrl: "/cadProjects/solidworks/heatExchanger/Assembly.PNG",
       },
       {
         localId: 3,
@@ -65,9 +65,7 @@ export const cadSoftware: CadSoftwareGroup[] = [
           "Dimensions: 600x800x400mm",
           "Weight: 45kg",
         ],
-        imageUrl: "/projects/solidworks-3.png",
       },
-      
     ],
   },
   {
@@ -82,7 +80,6 @@ export const cadSoftware: CadSoftwareGroup[] = [
         description: "2D architectural drawing with dimensions.",
         details:
           "Comprehensive floor plan with precise dimensions, annotations, and layered organization for residential construction.",
-        imageUrl: "/projects/autocad-1.png",
       },
       {
         localId: 2,
@@ -90,7 +87,6 @@ export const cadSoftware: CadSoftwareGroup[] = [
         description: "Single-line diagram for power distribution.",
         details:
           "Detailed electrical schematic showing power distribution, circuit protection, and component specifications.",
-        imageUrl: "/projects/autocad-2.png",
       },
       
     ],
@@ -107,9 +103,7 @@ export const cadSoftware: CadSoftwareGroup[] = [
         description: "Structural steel framework design.",
         details:
           "Industrial steel frame structure designed using Frame Generator with automated connections and BOM generation.",
-        imageUrl: "/projects/inventor-1.png",
       },
-     
     ],
   },
   {
@@ -124,7 +118,6 @@ export const cadSoftware: CadSoftwareGroup[] = [
         description: "Feature-based solid design.",
         details:
           "Advanced parametric modeling utilizing feature trees, relations, and family tables for design flexibility.",
-        imageUrl: "/projects/creo-1.png",
       },
       {
         localId: 2,
@@ -132,7 +125,6 @@ export const cadSoftware: CadSoftwareGroup[] = [
         description: "Advanced surface continuity.",
         details:
           "Complex surface design with G2/G3 continuity for high-quality industrial design aesthetics.",
-        imageUrl: "/projects/creo-2.png",
       },
      
     ],

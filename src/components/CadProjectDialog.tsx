@@ -44,6 +44,10 @@ export function CadProjectDialog({ software, project, onClose }: CadProjectDialo
     if (!open) setLightboxSrc(null);
   }, [open]);
 
+  useEffect(() => {
+    setImgFailed(false);
+  }, [project?.imageUrl, open]);
+
   return (
     <>
     <AnimatePresence>
@@ -149,9 +153,11 @@ export function CadProjectDialog({ software, project, onClose }: CadProjectDialo
               ) : null}
 
               {imgFailed && project.imageUrl ? (
-                <p className="mt-4 font-mono text-[10px] text-[var(--text-muted)]">
-                  Preview: {project.imageUrl} — copy renders into{" "}
-                  <code className="text-[var(--accent)]">public/</code> to display.
+                <p className="mt-4 rounded-lg border border-[var(--glass-border)] bg-[var(--glass-bg)] px-3 py-2 font-mono text-[10px] text-[var(--text-muted)]">
+                  Preview unavailable. Check that{" "}
+                  <code className="text-[var(--accent)]">{project.imageUrl}</code> exists in{" "}
+                  <code className="text-[var(--accent)]">public/</code> (paths are case-sensitive on
+                  Vercel).
                 </p>
               ) : null}
             </div>
