@@ -62,6 +62,7 @@ export const education: EducationEntry[] = [
     degree: "Master in Mechanical Engineering",
     period: "2026 — 2027",
     detail: "Product Design concentration.",
+    gpa: "4.0 / 4.0",
     logoSrc: "/stevens-logo.png",
   },
   {
@@ -99,7 +100,7 @@ export const experience: ExperienceEntry[] = [
   {
     company: "JCPenney",
     title: "Floor Associate",
-    period: "Aug 2025 — Present",
+    period: "Aug 2025 — Jan 2026",
     logoSrc: "/jcpenney-logo.png",
     bullets: [
       "Maintained an organized sales floor (shoes by size and style) to improve customer experience.",
@@ -213,15 +214,14 @@ export const projects: ProjectEntry[] = [
     tech: "Arduino Mega · IR & ultrasonic sensors · DC motors · servos",
     technologies: ["Arduino Mega", "IR sensors", "Ultrasonic sensors", "DC gear motors", "Servos"],
     color: "from-violet-600 to-fuchsia-800",
-    video: "/project1/videos/project2.mp4",
+    
     images: [
       "/project1/Picture6.png",
-      "/project1/robot-16.png",
+      "/project1/Picture2.png",
       "/project1/Picture3.png",
       "/project1/Picture4.png",
       "/project1/Picture5.png",
-      "/project1/robot-16.jpg",
-      "/project1/robot-11.jpg",
+
     ],
     dialog: [
       {
@@ -268,7 +268,7 @@ export const projects: ProjectEntry[] = [
     tech: "Arduino Mega · CNC shield · DRV8825 · SolidWorks · 3D printing",
     technologies: ["Arduino Mega", "CNC shield", "DRV8825", "SolidWorks", "3D printing", "12V pumps", "Keypad"],
     color: "from-emerald-600 to-teal-900",
-    video: "/project1/videos/project3.mp4",
+    video: "/project1/videos/project2.mp4",
     images: [
       "/project1/Colddrink/Picture5.jpg",
       "/project1/Colddrink/picture-1.png",
