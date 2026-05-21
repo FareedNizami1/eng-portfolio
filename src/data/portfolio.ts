@@ -319,11 +319,15 @@ export const projects: ProjectEntry[] = [
 
 export const background = {
   paragraphs: [
-    `Hi, I’m Fareed — officially ${site.name} on paper, but Fareed is what everyone calls me. I grew up in Karachi, Pakistan, a city that naturally teaches you how to adapt, solve problems fast, and think on your feet. That mindset pushed me toward Mechatronics Engineering, where mechanical systems, electronics, and software all come together to build something real.`,
+    `Hi, I’m Fareed — officially ${site.name}, but unless it’s a legal document, Fareed works perfectly.`,
 
-    "In 2025, my family and I moved to the United States to start a new chapter and build our future here. Before relocating, I was already working in engineering roles in Pakistan, gaining hands-on experience in manufacturing, process improvement, CAD design, and system-level problem solving. Relocating was a major life move, but it also sharpened my adaptability and made me even more driven to grow as an engineer in high-impact product and mechanical design roles.",
+    "I grew up in Karachi, Pakistan, where you learn pretty early how to adapt, stay sharp, and solve problems without waiting for perfect conditions. That mindset is a big reason I chose Mechatronics Engineering. I liked the idea of working at the intersection of mechanical systems, electronics, and software — basically the place where ideas stop being just ideas and start becoming real things.",
 
-    "What excites me most is the full engineering journey — taking an idea from a rough concept, designing it in CAD, prototyping it, testing it, finding what breaks, improving it, and repeating until it performs beautifully. I enjoy the interactive side of engineering: collaborating with teams, solving practical problems, and creating products that not only work well but feel thoughtfully designed. If you're building something ambitious, that’s exactly the kind of challenge I want to be part of.",
+    "In 2025, my family and I moved to the United States to start a new chapter. Before that, I had already worked in engineering roles in Pakistan, gaining hands-on experience in manufacturing, process improvement, CAD design, and system-level problem solving. Moving countries was not easy, but it taught me a lot about resilience, patience, and figuring things out one step at a time.",
+
+    "What I enjoy most is the full engineering process: starting with a rough concept, building it in CAD, prototyping, testing, finding what does not work, improving it, and trying again. I like engineering because it is practical, creative, and sometimes brutally honest — if something does not work, it tells you immediately.",
+
+    "I’m interested in product design, mechanical systems, prototyping, and building things that solve real problems. I enjoy working with people who are curious, ambitious, and not afraid to get into the details. If there is a challenging idea that needs to be designed, tested, improved, or brought to life, that is the kind of work I want to be part of.",
   ],
 };
 
