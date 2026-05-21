@@ -4,7 +4,8 @@ import { useEffect, useCallback, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { ProjectEntry, ProjectDialogBlock } from "@/data/portfolio";
 import { ImageLightbox } from "./ImageLightbox";
-import { ProjectGallery3D, type GalleryItem } from "./ProjectGallery3D";
+import { ProjectGallery3D } from "./ProjectGallery3D";
+import { buildProjectGalleryItems, DIALOG_PANEL_CLASS } from "@/lib/galleryItems";
 
 type ProjectDialogProps = {
   project: ProjectEntry | null;
@@ -67,7 +68,7 @@ export function ProjectDialog({ project, onClose }: ProjectDialogProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 8 }}
             transition={{ type: "spring", stiffness: 380, damping: 32 }}
-            className="relative z-10 flex h-[95vh] w-[95vw] max-h-[95vh] max-w-[95vw] flex-col overflow-hidden rounded-2xl border border-[var(--glass-border)] bg-[var(--bg-elevated)] shadow-[0_24px_80px_rgba(0,0,0,0.45)]"
+            className={DIALOG_PANEL_CLASS}
           >
             <div
               className={`relative shrink-0 bg-gradient-to-br ${project.color} px-6 py-8 md:px-8 md:py-10`}
@@ -118,8 +119,9 @@ export function ProjectDialog({ project, onClose }: ProjectDialogProps) {
                   </h3>
                   <div className="mt-4">
                     <ProjectGallery3D
-                      items={buildGalleryItems(project)}
+                      items={buildProjectGalleryItems(project)}
                       onImageClick={setLightboxSrc}
+                      size="large"
                     />
                   </div>
                 </div>
@@ -273,17 +275,6 @@ function Block({ block }: { block: ProjectDialogBlock }) {
     default:
       return null;
   }
-}
-
-function buildGalleryItems(project: ProjectEntry): GalleryItem[] {
-  const items: GalleryItem[] = [];
-  if (project.video) {
-    items.push({ type: "video", src: project.video, poster: project.images[0] });
-  }
-  for (const src of project.images) {
-    items.push({ type: "image", src });
-  }
-  return items;
 }
 
 function CloseIcon({ className }: { className?: string }) {

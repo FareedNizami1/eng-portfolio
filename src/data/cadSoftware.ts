@@ -6,7 +6,10 @@ export type CadProjectItem = {
   description: string;
   details: string;
   specifications?: string[];
+  /** Primary preview (legacy); also used if `images` is omitted */
   imageUrl?: string;
+  images?: string[];
+  video?: string;
 };
 
 export type CadSoftwareGroup = {
@@ -38,6 +41,17 @@ export const cadSoftware: CadSoftwareGroup[] = [
           "Software Version: SolidWorks 2024",
         ],
         imageUrl: "/cadProjects/solidworks/cylinderEngine/Assembly.PNG",
+        video: "/cadProjects/solidworks/cylinderEngine/Assembly.mp4",
+        images: [
+          "/cadProjects/solidworks/cylinderEngine/Assembly.PNG",
+          "/cadProjects/solidworks/cylinderEngine/AssemblyDrawing.PNG",
+          "/cadProjects/solidworks/cylinderEngine/ConnectingRod.PNG",
+          "/cadProjects/solidworks/cylinderEngine/ConnectingRodCap.PNG",
+          "/cadProjects/solidworks/cylinderEngine/CrankShaft.PNG",
+          "/cadProjects/solidworks/cylinderEngine/Piston.PNG",
+          "/cadProjects/solidworks/cylinderEngine/PistonPin.PNG",
+          "/cadProjects/solidworks/cylinderEngine/PistonRing.PNG",
+        ],
       },
       {
         localId: 2,
@@ -52,6 +66,18 @@ export const cadSoftware: CadSoftwareGroup[] = [
           "Surface Finish: Textured",
         ],
         imageUrl: "/cadProjects/solidworks/heatExchanger/Assembly.PNG",
+        images: [
+          "/cadProjects/solidworks/heatExchanger/Assembly.PNG",
+          "/cadProjects/solidworks/heatExchanger/AssemblyDrawing.PNG",
+          "/cadProjects/solidworks/heatExchanger/CoolingPlate.PNG",
+          "/cadProjects/solidworks/heatExchanger/CopperPipeCType.PNG",
+          "/cadProjects/solidworks/heatExchanger/Pipe1.PNG",
+          "/cadProjects/solidworks/heatExchanger/Pipe2.PNG",
+          "/cadProjects/solidworks/heatExchanger/Pipe3.PNG",
+          "/cadProjects/solidworks/heatExchanger/SSEndPlate.PNG",
+          "/cadProjects/solidworks/heatExchanger/SSEndPlate2.PNG",
+          "/cadProjects/solidworks/heatExchanger/SupportRod.PNG",
+        ],
       },
       {
         localId: 3,

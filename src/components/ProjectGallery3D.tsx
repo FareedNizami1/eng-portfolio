@@ -11,7 +11,14 @@ export type GalleryItem =
 type ProjectGallery3DProps = {
   items: GalleryItem[];
   onImageClick?: (src: string) => void;
+  /** compact = narrow; large = wider stage for dialog modals */
+  size?: "compact" | "large";
 };
+
+const sizeClass = {
+  compact: "max-w-lg",
+  large: "max-w-3xl",
+} as const;
 
 const slideVariants = {
   enter: (dir: number) => ({
@@ -34,7 +41,11 @@ const slideVariants = {
   }),
 };
 
-export function ProjectGallery3D({ items, onImageClick }: ProjectGallery3DProps) {
+export function ProjectGallery3D({
+  items,
+  onImageClick,
+  size = "large",
+}: ProjectGallery3DProps) {
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(0);
   const reduceMotion = useReducedMotion();
@@ -71,7 +82,7 @@ export function ProjectGallery3D({ items, onImageClick }: ProjectGallery3DProps)
 
   return (
     <motion.div
-      className="relative mx-auto min-w-0 w-full max-w-lg"
+      className={`relative mx-auto min-w-0 w-full ${sizeClass[size]}`}
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
@@ -233,7 +244,7 @@ function StageMedia({
           alt=""
           fill
           className="object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-          sizes="512px"
+          sizes="(max-width: 90vw) 768px"
           priority
         />
         <span className="pointer-events-none absolute bottom-3 right-3 rounded-lg border border-white/20 bg-black/60 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-white/90 opacity-0 backdrop-blur-md transition-opacity group-hover:opacity-100">
@@ -245,7 +256,7 @@ function StageMedia({
 
   return (
     <div className="relative h-full w-full bg-black/40">
-      <Image src={item.src} alt="" fill className="object-contain" sizes="512px" />
+      <Image src={item.src} alt="" fill className="object-contain" sizes="(max-width: 90vw) 768px" />
     </div>
   );
 }
@@ -270,7 +281,7 @@ function ThumbButton({
       aria-selected={isActive}
       aria-label={`Slide ${index + 1}${item.type === "video" ? ", video" : ""}`}
       onClick={onSelect}
-      className={`relative h-11 w-16 shrink-0 overflow-hidden rounded-md border transition-all duration-300 md:h-12 md:w-[4.5rem] ${
+      className={`relative h-14 w-[5.5rem] shrink-0 overflow-hidden rounded-md border transition-all duration-300 md:h-16 md:w-28 ${
         isActive
           ? "border-[var(--accent)] shadow-[0_0_20px_var(--accent-glow)] ring-2 ring-[var(--accent)]/30"
           : "border-[var(--glass-border)] opacity-70 hover:border-[var(--accent)]/40 hover:opacity-100"
@@ -279,7 +290,7 @@ function ThumbButton({
       {item.type === "video" ? (
         <>
           {item.poster ? (
-            <Image src={item.poster} alt="" fill className="object-cover" sizes="96px" />
+            <Image src={item.poster} alt="" fill className="object-cover" sizes="112px" />
           ) : (
             <div className="flex h-full items-center justify-center bg-black/80">
               <PlayIcon className="h-5 w-5 text-[var(--accent)]" />
@@ -290,7 +301,7 @@ function ThumbButton({
           </span>
         </>
       ) : (
-        <Image src={thumbSrc} alt="" fill className="object-cover" sizes="96px" />
+        <Image src={thumbSrc} alt="" fill className="object-cover" sizes="112px" />
       )}
       {isActive ? (
         <motion.span
