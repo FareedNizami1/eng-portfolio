@@ -33,6 +33,11 @@ function EducationCard({ e }: { e: EducationEntry }) {
             <p className="mt-1 text-sm text-[var(--text-secondary)]">{subjects}</p>
           ) : null}
           <p className="mt-1 text-[var(--accent)]">{e.school}</p>
+          {gpa ? (
+            <p className="mt-3 inline-flex items-center gap-2 rounded-lg border border-emerald-500/40 bg-emerald-500/15 px-3 py-1.5 font-mono text-xs font-medium text-emerald-700 dark:text-emerald-300">
+              GPA {gpa}
+            </p>
+          ) : null}
           <p className="mt-4 text-sm leading-relaxed text-[var(--text-muted)]">{e.detail}</p>
           {ach.length > 0 ? (
             <div className="mt-4 flex flex-wrap gap-2">
@@ -45,11 +50,6 @@ function EducationCard({ e }: { e: EducationEntry }) {
                 </span>
               ))}
             </div>
-          ) : null}
-          {gpa ? (
-            <p className="mt-4 inline-flex items-center gap-2 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-1.5 font-mono text-xs text-emerald-600 dark:text-emerald-400">
-              GPA {gpa}
-            </p>
           ) : null}
         </div>
         {logoSrc ? (
